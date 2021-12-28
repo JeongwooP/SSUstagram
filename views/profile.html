@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="timeline">
+    <div class="user-name">{{'로그인 한 ID: ' + user.mainId}}</div>
+    <div class="followings half">
+        <h2>팔로잉 목록</h2>
+        {% if user.Followings %}
+        <div>팔로잉 수: {{user.Followings | length}}</div>
+        {% for following in user.Followings %}
+        <div>{{following.mainId}}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="followers half">
+        <h2>팔로워 목록</h2>
+        {% if user.Followers %}
+        <div>팔로워 수: {{user.Followers | length}}</div>
+        {% for follower in user.Followers %}
+        <div>{{follower.mainId}}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+<div>
+    <h4> 현재 시간: <span id="now"></span></h4>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    window.onload = () => {
+        let time = new Date();
+        document.getElementById("now").innerText = time;
+    };
+</script>
+{% endblock %}
